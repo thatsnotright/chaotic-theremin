@@ -16,9 +16,11 @@
 (defn append [& parts] (apply concat parts))
 (defn addval [x y]
   (dosync
-    (ref-set plot-points {:x (conj (@plot-points :x) x), :y (conj (@plot-points :y) y)}
+    (ref-set plot-points {:x (conj (@plot-points :x) x), :y (conj (@plot-points :y) (- y))}
     )
   ))
+(defn please-exit []
+  (System/exit 0))
 (defn -main [& args]
   (let
     [
@@ -31,7 +33,7 @@
       ]
 
     (definst theremin [adj 0]
-      (let [snd (bpf (* (sin-osc 100000) (sin-osc (+ 102050 (* adj 100)))))]
+      (let [snd (bpf (* (sin-osc 100000) (sin-osc (+ 100500 (* adj 75)))))]
         (normalizer snd)
         ))
 
@@ -45,10 +47,11 @@
            apply_time (+ (* v_time 1000) start)
            ]
         (apply-at apply_time ctl [theremin :adj v_var])
-        ;(apply-at apply_time print [(append @plot-points [(nth item time) (nth item var)])])
         (apply-at apply_time addval [v_time v_var] )
         )
       )
-    ;(at (+ 300000 (now)) (System/exit 0))
+    (apply-at (+ 30000 start) stop [])
+    (apply-at (+ 30000 start) please-exit [])
+
     )
   )
