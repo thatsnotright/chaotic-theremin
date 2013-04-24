@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: org.clojars.processing-core:org.processing.opengl:1.5.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/clojars/processing-core/org.processing.opengl/1.5.1/org.processing.opengl-1.5.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

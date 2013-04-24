@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: quil:quil:1.6.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/quil/quil/1.6.0/quil-1.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
