@@ -17,6 +17,8 @@
 (def screen-w 1000)
 (def screen-h 500)
 (def last-y (atom -9999999.0))
+(def last-x (atom -9999999.0))
+
 (def max-time (atom 30))
 
 (defn scale-y [yvals]
@@ -26,11 +28,18 @@
     )
   )
 
+(defn scale-x [xvals]
+  (if (= 0 (count xvals))
+    1
+    (reset! last-x (apply max [@last-x (Math/abs (last xvals))]))
+    )
+  )
+
 (defn draw []
   (background 0)
-  (translate 0 (/ screen-h 2))
+  (translate (/ screen-w 2) (/ screen-h 2))
   (scale
-    (/ screen-w @max-time)
+    (/ (/ screen-w 2) (scale-x (@plot-points :x)))
     (/ (/ screen-h 2) (scale-y (@plot-points :y ))
       )
     )
